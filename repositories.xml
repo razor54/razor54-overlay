@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<repositories version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>razor54-overlay</name>
+      <description lang="en">razor54's Custom Gentoo Overlay.</description>
+        <homepage>https://github.com/razor54/razor54-overlay</homepage>
+        <owner type="person">
+            <name>razor54</name>
+            <email>andregaudencio5@gmail.com</email>
+        </owner>
+        <source type="git">git://github.com/razor54/razor54-overlay.git</source>
+        <feed>https://github.com/razor54/razor54-overlay/commits/master.atom</feed>
+  </repo>
+</repositories>

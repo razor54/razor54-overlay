@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>andregaudencio5@gmail.com</email>
+    <name>razor54</name>
+  </maintainer>
+  <longdescription lang="en">
+   Zen Browser is a free and open-source fork of Mozilla Firefox, with its main focus being privacy, customizability and design, and it is licensed under the Mozilla Public License 2.0 (MPL 2.0). 
+  </longdescription>
+  <!--upstream-->
+    <!--remote-id type="github">VSCodium/VSCodium</remote-id-->
+    <!--bugs-to>https://github.com/VSCodium/VSCodium/issues</bugs-to-->
+  <!--/upstream-->
+</pkgmetadata>
