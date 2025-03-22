@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>andregaudencio5@gmail.com</email>
+    <name>razor54</name>
+  </maintainer>
+  <longdescription>
+    Brother DCP-L2530DW printer driver.
+  </longdescription>
+  <upstream>
+    <remote-id type="brother">DCP-L2530DW</remote-id>
+    <bugs-to>https://support.brother.com/</bugs-to>
+  </upstream>
+</pkgmetadata>
+
