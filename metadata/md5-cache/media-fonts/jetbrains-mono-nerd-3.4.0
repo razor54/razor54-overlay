@@ -1,0 +1,12 @@
+BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
+DEFINED_PHASES=install postinst postrm setup
+DESCRIPTION=JetBrains officially created font for developers
+EAPI=8
+HOMEPAGE=https://NerdFonts.com
+INHERIT=font
+IUSE=X
+LICENSE=NERDFONTS
+SLOT=0
+SRC_URI=https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
+_md5_=5510d8215ba03fde05b9cf3f2d39098a
