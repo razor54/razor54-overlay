@@ -16,8 +16,8 @@ DEPEND="
     dev-build/cmake
     sys-devel/make
     sys-devel/gcc
-    dev-vcs/git        # For version checking in build scripts
-    dev-util/pkgconf   # pkg-config replacement
+    dev-vcs/git
+    dev-util/pkgconf
 
     # Graphical stack
     media-libs/mesa
