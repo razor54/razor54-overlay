@@ -19,38 +19,31 @@ DEPEND="
     dev-vcs/git
     dev-util/pkgconf
 
-    # Graphical stack
     media-libs/mesa
     virtual/glu
     x11-libs/cairo
     x11-libs/gtk+:3
     media-libs/glew
 
-    # Networking and web
     net-libs/libsoup:2.4
     net-libs/webkit-gtk:4.1
     net-misc/curl
 
-    # Multimedia
     media-libs/gstreamer
 
-    # Geometry/math libraries
     dev-cpp/eigen
     dev-cpp/tbb
     sci-libs/nlopt
     media-gfx/openvdb
 
-    # Windowing system
     dev-libs/wayland
     x11-libs/libxkbcommon
     dev-libs/wayland-protocols
     media-libs/glfw
 
-    # Core libraries
     dev-libs/boost
     dev-libs/expat
 
-    # Build tools (temporary)
     sys-devel/m4
     dev-lang/perl
 "
