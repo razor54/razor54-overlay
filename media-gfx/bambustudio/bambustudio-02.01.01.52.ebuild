@@ -14,7 +14,6 @@ IUSE=""
 
 DEPEND="
     dev-build/cmake
-    sys-devel/make
     sys-devel/gcc
     dev-vcs/git
     dev-util/pkgconf
