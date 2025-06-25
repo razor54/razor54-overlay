@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare
-DEPEND=dev-build/cmake sys-devel/make sys-devel/gcc dev-vcs/git dev-util/pkgconf media-libs/mesa virtual/glu x11-libs/cairo x11-libs/gtk+:3 media-libs/glew net-libs/libsoup:2.4 net-libs/webkit-gtk:4.1 net-misc/curl media-libs/gstreamer dev-cpp/eigen dev-cpp/tbb sci-libs/nlopt media-gfx/openvdb dev-libs/wayland x11-libs/libxkbcommon dev-libs/wayland-protocols media-libs/glfw dev-libs/boost dev-libs/expat sys-devel/m4 dev-lang/perl
+DEPEND=dev-build/cmake sys-devel/gcc dev-vcs/git dev-util/pkgconf media-libs/mesa virtual/glu x11-libs/cairo x11-libs/gtk+:3 media-libs/glew net-libs/libsoup:2.4 net-libs/webkit-gtk:4.1 net-misc/curl media-libs/gstreamer dev-cpp/eigen dev-cpp/tbb sci-libs/nlopt media-gfx/openvdb dev-libs/wayland x11-libs/libxkbcommon dev-libs/wayland-protocols media-libs/glfw dev-libs/boost dev-libs/expat sys-devel/m4 dev-lang/perl
 DESCRIPTION=Bambu Studio - 3D printing slicer (PrusaSlicer fork)
 EAPI=8
 HOMEPAGE=https://github.com/bambulab/BambuStudio
@@ -8,4 +8,4 @@ LICENSE=AGPL-3
 RDEPEND=media-libs/mesa virtual/glu x11-libs/cairo x11-libs/gtk+:3 media-libs/glew net-libs/libsoup:2.4 net-libs/webkit-gtk:4.1 net-misc/curl media-libs/gstreamer dev-cpp/tbb media-gfx/openvdb dev-libs/boost dev-libs/expat media-libs/glfw
 SLOT=0
 SRC_URI=https://github.com/bambulab/BambuStudio/archive/refs/tags/v02.01.01.52.tar.gz -> bambustudio-02.01.01.52.tar.gz
-_md5_=e3b289e3da5d8013c83782be8a41f454
+_md5_=b7ed2fb97a34fb7d069d56685ee4e303
