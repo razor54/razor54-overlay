@@ -64,7 +64,8 @@ RDEPEND="
     media-libs/glfw
 "
 
-S="${WORKDIR}/${P}"
+#S="${WORKDIR}/${P}"
+S="${WORKDIR}/BambuStudio-02.01.01.52"
 
 src_prepare() {
 	default
