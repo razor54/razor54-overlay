@@ -1,11 +1,11 @@
 DEFINED_PHASES=compile configure install prepare
-DEPEND=dev-build/cmake sys-devel/gcc dev-util/pkgconf media-libs/mesa virtual/glu x11-libs/cairo x11-libs/gtk+:3 media-libs/glew net-libs/libsoup:2.4 net-libs/webkit-gtk:4.1 net-misc/curl media-libs/gstreamer dev-cpp/eigen dev-cpp/tbb sci-libs/nlopt media-gfx/openvdb dev-libs/wayland x11-libs/libxkbcommon dev-libs/wayland-protocols media-libs/glfw dev-libs/boost dev-libs/expat sys-devel/m4 dev-lang/perl media-libs/libjpeg-turbo media-video/ffmpeg media-libs/libpng dev-libs/openssl sci-libs/gmp
+DEPEND=dev-build/cmake sys-devel/gcc dev-util/pkgconf media-libs/mesa virtual/glu x11-libs/cairo x11-libs/gtk+:3 media-libs/glew net-libs/libsoup:2.4 net-libs/webkit-gtk:4.1 net-misc/curl media-libs/gstreamer dev-cpp/eigen dev-cpp/tbb sci-libs/nlopt media-gfx/openvdb dev-libs/wayland x11-libs/libxkbcommon dev-libs/wayland-protocols media-libs/glfw dev-libs/boost dev-libs/expat sys-devel/m4 dev-lang/perl media-libs/libjpeg-turbo media-video/ffmpeg media-libs/libpng dev-libs/openssl dev-libs/gmp
 DESCRIPTION=Bambu Studio - 3D printing slicer (PrusaSlicer fork)
 EAPI=8
 HOMEPAGE=https://github.com/bambulab/BambuStudio
 KEYWORDS=~amd64
 LICENSE=AGPL-3
-RDEPEND=dev-build/cmake sys-devel/gcc dev-util/pkgconf media-libs/mesa virtual/glu x11-libs/cairo x11-libs/gtk+:3 media-libs/glew net-libs/libsoup:2.4 net-libs/webkit-gtk:4.1 net-misc/curl media-libs/gstreamer dev-cpp/eigen dev-cpp/tbb sci-libs/nlopt media-gfx/openvdb dev-libs/wayland x11-libs/libxkbcommon dev-libs/wayland-protocols media-libs/glfw dev-libs/boost dev-libs/expat sys-devel/m4 dev-lang/perl media-libs/libjpeg-turbo media-video/ffmpeg media-libs/libpng dev-libs/openssl sci-libs/gmp
+RDEPEND=dev-build/cmake sys-devel/gcc dev-util/pkgconf media-libs/mesa virtual/glu x11-libs/cairo x11-libs/gtk+:3 media-libs/glew net-libs/libsoup:2.4 net-libs/webkit-gtk:4.1 net-misc/curl media-libs/gstreamer dev-cpp/eigen dev-cpp/tbb sci-libs/nlopt media-gfx/openvdb dev-libs/wayland x11-libs/libxkbcommon dev-libs/wayland-protocols media-libs/glfw dev-libs/boost dev-libs/expat sys-devel/m4 dev-lang/perl media-libs/libjpeg-turbo media-video/ffmpeg media-libs/libpng dev-libs/openssl dev-libs/gmp
 SLOT=0
 SRC_URI=https://github.com/bambulab/BambuStudio/archive/refs/tags/v02.01.01.52.tar.gz -> bambustudio-02.01.01.52.tar.gz
-_md5_=a43fc738c7666b0116881fac21dd13cb
+_md5_=ccc4157965e743deb5f1fca73c48acc0

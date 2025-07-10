@@ -41,7 +41,7 @@ DEPEND="
     media-video/ffmpeg
     media-libs/libpng
     dev-libs/openssl
-    sci-libs/gmp
+    dev-libs/gmp
 "
 
 RDEPEND="${DEPEND}"
