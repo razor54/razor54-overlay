@@ -54,13 +54,6 @@ src_unpack() {
 }
 
 src_install() {
-	rm -r squashfs-root/{*.{AppImage,desktop},.DirIcon,usr} || die
-	patchelf --replace-needed libwebkit2gtk-4.0.so.37 libwebkit2gtk-4.1.so.0 \
-		"${S}"/squashfs-root/bin/bambu-studio || die
-	patchelf --replace-needed libjavascriptcoregtk-4.0.so.18 libjavascriptcoregtk-4.1.so.0 \
-		"${S}"/squashfs-root/bin/bambu-studio || die
-	patchelf --remove-needed libsoup-2.4.so.1 \
-		"${S}"/squashfs-root/bin/bambu-studio || die
 	patchelf --set-rpath '$ORIGIN' \
 		"${S}"/squashfs-root/bin/bambu-studio || die
 	insinto /opt/"${PN}"
