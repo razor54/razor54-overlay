@@ -12,35 +12,37 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
-    dev-util/cmake
-    sys-devel/gcc
-    dev-util/pkgconf
-    media-libs/mesa
-    virtual/glu
-    x11-libs/cairo
-    x11-libs/gtk+:3
-    media-libs/glew
-    net-libs/libsoup:2.4
-    net-libs/webkit-gtk:4.1
-    net-misc/curl
-    media-libs/gstreamer
-    dev-cpp/eigen
-    dev-cpp/tbb
-    sci-libs/nlopt
-    media-gfx/openvdb
-    dev-libs/wayland
-    x11-libs/libxkbcommon
-    dev-libs/wayland-protocols
-    media-libs/glfw
-    dev-libs/boost
-    dev-libs/expat
-    sys-devel/m4
-    dev-lang/perl
-    media-libs/libjpeg-turbo
-    media-video/ffmpeg
-    media-libs/libpng
-    dev-libs/openssl
-    dev-libs/gmp
+	dev-build/cmake
+	sys-devel/gcc
+	dev-util/pkgconf
+	sys-devel/gcc
+	dev-util/pkgconf
+	media-libs/mesa
+	virtual/glu
+	x11-libs/cairo
+	x11-libs/gtk+:3
+	media-libs/glew
+	net-libs/libsoup:2.4
+	net-libs/webkit-gtk:4.1
+	net-misc/curl
+	media-libs/gstreamer
+	dev-cpp/eigen
+	dev-cpp/tbb
+	sci-libs/nlopt
+	media-gfx/openvdb
+	dev-libs/wayland
+	x11-libs/libxkbcommon
+	dev-libs/wayland-protocols
+	media-libs/glfw
+	dev-libs/boost
+	dev-libs/expat
+	sys-devel/m4
+	dev-lang/perl
+	media-libs/libjpeg-turbo
+	media-video/ffmpeg
+	media-libs/libpng
+	dev-libs/openssl
+	dev-libs/gmp
 "
 
 RDEPEND="${DEPEND}"
