@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>andregaudencio5@gmail.com</email>
+    <name>razor54</name>
+  </maintainer>
+  <longdescription lang="en">
+    Brave is a free and open-source web browser that blocks ads and trackers by default.
+    Built on Chromium, it emphasizes privacy and speed with built-in ad blocking and tracking protection.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">brave/brave-browser</remote-id>
+  </upstream>
+</pkgmetadata>

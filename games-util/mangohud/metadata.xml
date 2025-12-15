@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>andregaudencio5@gmail.com</email>
+    <name>razor54</name>
+  </maintainer>
+  <longdescription lang="en">
+    MangoHud is a Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more. 
+    Highly customizable and perfect for gaming performance analysis.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">flightlessmango/MangoHud</remote-id>
+  </upstream>
+</pkgmetadata>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>andregaudencio5@gmail.com</email>
+    <name>razor54</name>
+  </maintainer>
+  <longdescription lang="en">
+    Bambu Studio is a 3D printing slicer software for Bambu Lab 3D printers.
+    It provides comprehensive control over 3D printing with advanced features and optimizations.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">bambulab/BambuStudio</remote-id>
+  </upstream>
+</pkgmetadata>

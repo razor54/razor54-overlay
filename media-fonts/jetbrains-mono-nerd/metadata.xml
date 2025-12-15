@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>andregaudencio5@gmail.com</email>
+    <name>razor54</name>
+  </maintainer>
+  <longdescription lang="en">
+    JetBrains Mono Nerd Font is a patched version of JetBrains Mono font with additional glyphs and icons from Nerd Fonts.
+    Perfect for developers using terminal applications and code editors.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">ryanoasis/nerd-fonts</remote-id>
+  </upstream>
+</pkgmetadata>
