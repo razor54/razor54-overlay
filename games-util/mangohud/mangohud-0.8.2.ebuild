@@ -46,11 +46,12 @@ fi
 LICENSE="MIT"
 SLOT="0"
 
-IUSE="dbus mangoapp plots wayland +X"
+IUSE="dbus mangoapp plots video_cards_nvidia wayland +X xnvctrl"
 
 REQUIRED_USE="
 	|| ( wayland X )
 	mangoapp? ( X )
+	xnvctrl? ( video_cards_nvidia X )
 	${PYTHON_REQUIRED_USE}
 "
 
@@ -66,6 +67,10 @@ COMMON_DEPEND="
 DEPEND="
 	${COMMON_DEPEND}
 	dbus? ( sys-apps/dbus )
+	video_cards_nvidia? (
+		x11-drivers/nvidia-drivers
+		xnvctrl? ( x11-drivers/nvidia-drivers[static-libs] )
+	)
 "
 RDEPEND="
 	${COMMON_DEPEND}
@@ -127,7 +132,8 @@ src_configure() {
 		-Dinclude_doc=true
 		$(meson_native_use_bool mangoapp mangohudctl)
 		-Duse_system_spdlog=enabled
-		-Dwith_xnvctrl=disabled
+		$(meson_feature video_cards_nvidia with_nvml)
+		$(meson_feature xnvctrl with_xnvctrl)
 		--force-fallback-for=imgui,implot
 	)
 
@@ -140,5 +146,25 @@ src_install() {
 	if use plots; then
 		python_optimize "${D}"
 		python_fix_shebang "${D}"
+	fi
+}
+
+pkg_postinst() {
+	if use video_cards_nvidia; then
+		if ! use xnvctrl; then
+			elog ""
+			elog "NVIDIA GPU detected. For improved GPU monitoring on older NVIDIA cards,"
+			elog "consider enabling the 'xnvctrl' USE flag:"
+			elog "  echo 'games-util/mangohud xnvctrl' >> /etc/portage/package.use"
+			elog ""
+		fi
+	else
+		elog ""
+		elog "For NVIDIA GPU support, enable the 'video_cards_nvidia' USE flag:"
+		elog "  echo 'games-util/mangohud video_cards_nvidia' >> /etc/portage/package.use"
+		elog ""
+		elog "For additional GPU load monitoring on older NVIDIA cards, also enable 'xnvctrl':"
+		elog "  echo 'games-util/mangohud video_cards_nvidia xnvctrl' >> /etc/portage/package.use"
+		elog ""
 	fi
 }
