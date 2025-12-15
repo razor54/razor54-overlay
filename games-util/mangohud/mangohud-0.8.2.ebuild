@@ -15,7 +15,7 @@ if [[ "${PV}" == "9999" ]]; then
 	VULKAN_HEADER_VER="1.2.158"
 	VULKAN_HEADER_WRAP_VER="${VULKAN_HEADER_VER}-2"
 	IMGUI_VER="1.89.9"
-	IMGUI_WRAP="${IMGUI_VER}-1"
+	IMGUI_WRAP="${IMGUI_VER}-2"
 	IMPLOT_VER="0.16"
 	IMPLOT_WRAP="${IMPLOT_VER}-1"
 
@@ -51,7 +51,6 @@ IUSE="dbus mangoapp plots video_cards_nvidia wayland +X xnvctrl"
 REQUIRED_USE="
 	|| ( wayland X )
 	mangoapp? ( X )
-	xnvctrl? ( video_cards_nvidia X )
 	${PYTHON_REQUIRED_USE}
 "
 
@@ -71,7 +70,6 @@ DEPEND="
 		x11-drivers/nvidia-drivers
 		xnvctrl? ( x11-drivers/nvidia-drivers[static-libs] )
 	)
-"
 RDEPEND="
 	${COMMON_DEPEND}
 	${PYTHON_DEPS}
@@ -92,6 +90,7 @@ BDEPEND="
 if [[ ${PV} == "9999" ]]; then
 	BDEPEND+=" app-arch/unzip"
 fi
+
 
 python_check_deps() {
 	python_has_version "dev-python/mako[${PYTHON_USEDEP}]"
