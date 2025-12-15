@@ -90,7 +90,7 @@ BDEPEND="
 	')
 "
 if [[ ${PV} == "9999" ]]; then
-	BDEPEND="${BDEPEND} app-arch/unzip"
+	BDEPEND+=" app-arch/unzip"
 fi
 
 python_check_deps() {
