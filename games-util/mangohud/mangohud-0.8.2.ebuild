@@ -70,6 +70,7 @@ DEPEND="
 		x11-drivers/nvidia-drivers
 		xnvctrl? ( x11-drivers/nvidia-drivers[static-libs] )
 	)
+"
 RDEPEND="
 	${COMMON_DEPEND}
 	${PYTHON_DEPS}
