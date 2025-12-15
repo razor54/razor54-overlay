@@ -99,10 +99,6 @@ RDEPEND="
 	${DEPEND}
 "
 
-PATCHES=(
-	"${FILESDIR}/0.8.1-use-bundled-imgui-and-implot.patch"
-)
-
 python_check_deps() {
 	python_has_version -b "dev-python/mako[${PYTHON_USEDEP}]"
 }
@@ -132,12 +128,6 @@ src_prepare() {
 	# set version since we don't have git tags
 	sed -i -e "/^project('MangoHud',$/,/^)$/s/version : '.*'/version : '${MY_PV}${MY_PV_REV}'/" \
 		meson.build || die
-
-	# mangohud by default statically links libstdc++
-	# dynamically linked libc++ works just fine though
-	if [[ "$(tc-get-cxx-stdlib)" == "libc++" ]]; then
-		eapply "${FILESDIR}/0.8.0_rc1-libcxx.patch"
-	fi
 
 	# https://github.com/flightlessmango/MangoHud/issues/1240
 	# lld throws an error, mold just a warning, bfd doesn't care

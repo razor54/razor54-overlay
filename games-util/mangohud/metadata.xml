@@ -6,7 +6,7 @@
     <name>razor54</name>
   </maintainer>
   <longdescription lang="en">
-    MangoHud is a Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more. 
+    MangoHud is a Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more.
     Highly customizable and perfect for gaming performance analysis.
   </longdescription>
   <upstream>
