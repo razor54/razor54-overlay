@@ -85,7 +85,7 @@ BDEPEND="
 	')
 "
 if [[ ${PV} == "9999" ]]; then
-	BDEPEND+=" app-arch/unzip"
+	BDEPEND="${BDEPEND} app-arch/unzip"
 fi
 
 python_check_deps() {
@@ -125,7 +125,7 @@ src_configure() {
 		-Ddynamic_string_tokens=true
 		-Dglibcxx_asserts=false
 		-Dinclude_doc=true
-		$(meson_native_true mangohudctl)
+		$(meson_native_use_bool mangoapp mangohudctl)
 		-Duse_system_spdlog=enabled
 		-Dwith_xnvctrl=disabled
 		--force-fallback-for=imgui,implot
