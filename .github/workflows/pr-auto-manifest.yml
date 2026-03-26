@@ -1,0 +1,30 @@
+name: PR auto manifest
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  manifest:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && github.ref || github.event.pull_request.head.ref }}
+          repository: ${{ github.event_name == 'workflow_dispatch' && github.repository || github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Explain limitation and fail clearly
+        run: |
+          echo 'Automatic pkgdev manifest updates are not working reliably in GitHub Actions for this repo yet.'
+          echo 'Current blockers: bootstrapping a Gentoo manifesting environment inside Actions and fetching all package distfiles.'
+          echo 'Please run pkgdev manifest locally on Gentoo for changed package dirs, or remove draft ebuilds from this PR.'
+          exit 1
