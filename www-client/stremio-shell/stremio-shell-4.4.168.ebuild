@@ -24,8 +24,8 @@ SRC_URI="
 "
 
 LICENSE="MIT"
-SLOT="0"
 S="${WORKDIR}/${PN}-${PV}"
+SLOT="0"
 KEYWORDS=""
 
 inherit desktop qmake-utils xdg-utils

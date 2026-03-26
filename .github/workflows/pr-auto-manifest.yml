@@ -13,15 +13,7 @@ jobs:
   manifest:
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    container:
-      image: gentoo/stage3:latest
     steps:
-      - name: Install git and Python
-        run: |
-          emerge-webrsync || true
-          emerge --sync || true
-          emerge --quiet dev-vcs/git dev-lang/python:3.12 app-shells/bash app-admin/sudo
-
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
@@ -30,93 +22,9 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Configure git
+      - name: Explain limitation and fail clearly
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-
-      - name: Install pkgdev
-        run: |
-          emerge --verbose --oneshot app-portage/pkgdev app-portage/gentoolkit
-
-      - name: Detect changed package directories
-        id: changed
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ "${{ github.event_name }}" == "pull_request_target" ]]; then
-            BASE_SHA="${{ github.event.pull_request.base.sha }}"
-            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
-          else
-            BASE_SHA="$(git rev-list --max-count=2 HEAD | tail -n1 || true)"
-            HEAD_SHA="$(git rev-parse HEAD)"
-          fi
-
-          if [[ -z "${BASE_SHA}" ]]; then
-            git diff-tree --no-commit-id --name-only -r "${HEAD_SHA}" > changed_files.txt
-          else
-            git diff --name-only "${BASE_SHA}" "${HEAD_SHA}" > changed_files.txt
-          fi
-
-          python3 - <<'PY'
-from pathlib import Path
-files = [Path(line.strip()) for line in Path('changed_files.txt').read_text().splitlines() if line.strip()]
-pkg_dirs = sorted({str(p.parent) for p in files if len(p.parts) >= 3 and p.parts[0] != '.github' and p.name.endswith('.ebuild')})
-Path('package_dirs.txt').write_text('\n'.join(pkg_dirs) + ('\n' if pkg_dirs else ''))
-print(f"count={len(pkg_dirs)}")
-for d in pkg_dirs:
-    print(d)
-PY
-
-          {
-            echo 'count<<EOF'
-            python3 - <<'PY'
-from pathlib import Path
-text = Path('package_dirs.txt').read_text() if Path('package_dirs.txt').exists() else ''
-print(len([l for l in text.splitlines() if l.strip()]))
-PY
-            echo EOF
-            echo 'dirs<<EOF'
-            cat package_dirs.txt 2>/dev/null || true
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Run pkgdev manifest on changed packages
-        if: steps.changed.outputs.count != '0'
-        shell: bash
-        run: |
-          set -euo pipefail
-          while IFS= read -r pkgdir; do
-            [[ -n "$pkgdir" ]] || continue
-            echo "Running pkgdev manifest in $pkgdir"
-            (cd "$pkgdir" && pkgdev manifest)
-          done < package_dirs.txt
-
-      - name: Commit Manifest updates
-        if: steps.changed.outputs.count != '0'
-        shell: bash
-        run: |
-          set -euo pipefail
-          if git diff --quiet -- package_dirs.txt . ':!package_dirs.txt' ':!changed_files.txt'; then
-            echo 'No Manifest changes to commit.'
-            exit 0
-          fi
-          find . -path '*/Manifest' -o -path '*/metadata.xml' | sed 's#^./##' | sort > tracked-manifest-files.txt
-          while IFS= read -r pkgdir; do
-            [[ -n "$pkgdir" ]] || continue
-            git add "$pkgdir/Manifest" || true
-          done < package_dirs.txt
-          git commit -m 'ci: update Manifest files for PR changes' || exit 0
-          git push
-
-      - name: Comment on PR when nothing needed
-        if: github.event_name == 'pull_request_target' && steps.changed.outputs.count == '0'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              body: 'No changed ebuild package directories were detected, so no Manifest update was needed.'
-            })
+          echo 'Automatic pkgdev manifest updates are not working reliably in GitHub Actions for this repo yet.'
+          echo 'Current blockers: bootstrapping a Gentoo manifesting environment inside Actions and fetching all package distfiles.'
+          echo 'Please run pkgdev manifest locally on Gentoo for changed package dirs, or remove draft ebuilds from this PR.'
+          exit 1

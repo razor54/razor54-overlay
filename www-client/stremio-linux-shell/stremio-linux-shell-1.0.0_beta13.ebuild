@@ -54,8 +54,8 @@ SRC_URI="
 "
 
 LICENSE="GPL-3 Apache-2.0 BSD ISC MIT MPL-2.0 Unicode-3.0"
-SLOT="0"
 S="${WORKDIR}/${PN}-${MY_PV}"
+SLOT="0"
 KEYWORDS=""
 
 inherit cargo desktop xdg
