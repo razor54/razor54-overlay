@@ -34,16 +34,12 @@ CRATES="
 	ureq@3.0.12
 "
 
-# git-sourced crates pinned by upstream Cargo.lock
-CARGO_CRATE_URIS="$(cargo_crate_uris ${CRATES})"
-GIT_CRATES="
-	cef https://github.com/Stremio/cef-rs 8aa6a6aa6e3b621e9a571a34b64e90f1a574277b
-	cef-dll-sys https://github.com/Stremio/cef-rs 8aa6a6aa6e3b621e9a571a34b64e90f1a574277b
-	glutin https://github.com/Stremio/glutin 7d45516496d1783ba37fa94ebdd255272605892c feat/wayland-file-window-events
-	glutin-winit https://github.com/Stremio/glutin 7d45516496d1783ba37fa94ebdd255272605892c feat/wayland-file-window-events
-	libmpv2 https://github.com/Stremio/libmpv2-rs b2b0ce03fde964c0c5cd4f66e193740062468b41
-	winit https://github.com/Stremio/winit dbb55e126896887283c269c4460d0d7f80349012 feat/wayland-file-window-events
-"
+# NOTE:
+# Upstream uses git-sourced Rust dependencies. This draft ebuild intentionally
+# avoids calling cargo helper URI generators during metadata regeneration,
+# because pkgcheck/pkg metadata sourcing disallows external commands there.
+# A production-ready version should expand crate/git SRC_URI entries statically
+# or vendor dependencies into a release tarball.
 
 # Upstream version/tag mapping: 1.0.0_beta13 -> v1.0.0-beta.13
 MY_PV=${PV/_beta/-beta.}
@@ -54,14 +50,12 @@ DESCRIPTION="Linux-native Stremio shell written in Rust"
 HOMEPAGE="https://github.com/Stremio/stremio-linux-shell"
 SRC_URI="
 	https://github.com/Stremio/${PN}/archive/refs/tags/v${MY_PV}.tar.gz -> ${P}.tar.gz
-	${CARGO_CRATE_URIS}
-	$(cargo_live_src_uri ${GIT_CRATES})
 	https://cef-builds.spotifycdn.com/${CEF_DIST}
 "
 
 LICENSE="GPL-3 Apache-2.0 BSD ISC MIT MPL-2.0 Unicode-3.0"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 inherit cargo desktop xdg

@@ -20,7 +20,7 @@ SRC_URI="
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 S="${WORKDIR}/${PN}-${PV}"
 
 inherit qmake-utils xdg-utils
