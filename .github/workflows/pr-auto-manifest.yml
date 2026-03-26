@@ -1,0 +1,81 @@
+name: PR auto manifest
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh-manifests:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    container:
+      image: gentoo/stage3:latest
+    steps:
+      - name: Install git
+        run: |
+          emerge --sync
+          emerge --quiet dev-vcs/git app-portage/pkgdev
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Refresh manifests for changed package dirs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base_ref="${{ github.event.pull_request.base.sha }}"
+          else
+            base_ref="HEAD^"
+          fi
+
+          mapfile -t pkgdirs < <(
+            git diff --name-only "$base_ref" HEAD \
+              | awk -F/ 'NF >= 2 && $1 !~ /^\./ { print $1 "/" $2 }' \
+              | sort -u
+          )
+
+          if [ ${#pkgdirs[@]} -eq 0 ]; then
+            echo "No package directories changed."
+            exit 0
+          fi
+
+          changed=0
+          for dir in "${pkgdirs[@]}"; do
+            if ls "$dir"/*.ebuild >/dev/null 2>&1; then
+              echo "Running pkgdev manifest in $dir"
+              (cd "$dir" && pkgdev manifest)
+              changed=1
+            fi
+          done
+
+          if [ "$changed" -eq 0 ]; then
+            echo "No changed package directories with ebuilds found."
+          fi
+
+      - name: Commit manifest updates
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet --exit-code -- '**/Manifest'; then
+            echo "No Manifest changes to commit."
+            exit 0
+          fi
+          git add '**/Manifest'
+          git commit -m "ci: refresh manifests"
+          git push

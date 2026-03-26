@@ -1,0 +1,22 @@
+name: pkgcheck
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pkgcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run pkgcheck
+        uses: pkgcore/pkgcheck-action@v1
+        with:
+          args: --net
