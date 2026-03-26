@@ -16,6 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pkgcore
+          key: pkgcheck-${{ hashFiles('**/Manifest') }}
+          restore-keys: pkgcheck-
+
       - name: Run pkgcheck
         uses: pkgcore/pkgcheck-action@v1
         with:
