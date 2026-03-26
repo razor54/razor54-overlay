@@ -23,8 +23,8 @@ SRC_URI="
 	https://dl.strem.io/four/v${PV}/stremio.asar
 "
 
-LICENSE="MIT"
 S="${WORKDIR}/${PN}-${PV}"
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS=""
 
