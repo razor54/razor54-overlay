@@ -55,8 +55,8 @@ SRC_URI="
 
 LICENSE="GPL-3 Apache-2.0 BSD ISC MIT MPL-2.0 Unicode-3.0"
 SLOT="0"
-KEYWORDS=""
 S="${WORKDIR}/${PN}-${MY_PV}"
+KEYWORDS=""
 
 inherit cargo desktop xdg
 
@@ -75,7 +75,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 BDEPEND="
 	app-arch/tar
-	virtual/rust
+	dev-lang/rust
 "
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"

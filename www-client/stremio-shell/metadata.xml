@@ -9,6 +9,7 @@
     <remote-id type="github">Stremio/stremio-shell</remote-id>
   </upstream>
   <longdescription>
-    Qt5-based shell for the Stremio desktop application.
+    Native desktop shell for Stremio based on Qt5, bundling the upstream web app
+    assets together with the shell runtime used to launch and integrate playback.
   </longdescription>
 </pkgmetadata>

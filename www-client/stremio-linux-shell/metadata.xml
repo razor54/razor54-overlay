@@ -9,6 +9,7 @@
     <remote-id type="github">Stremio/stremio-linux-shell</remote-id>
   </upstream>
   <longdescription>
-    Linux-native Stremio shell implementation written in Rust using MPV and CEF.
+    Experimental Linux-native Stremio shell written in Rust and built around MPV
+    together with Chromium Embedded Framework for the application UI.
   </longdescription>
 </pkgmetadata>
