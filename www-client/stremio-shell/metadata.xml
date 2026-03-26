@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>razor54@users.noreply.github.com</email>
+    <name>André</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="github">Stremio/stremio-shell</remote-id>
+  </upstream>
+  <longdescription>
+    Qt5-based shell for the Stremio desktop application.
+  </longdescription>
+</pkgmetadata>
