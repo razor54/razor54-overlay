@@ -1,69 +1,14 @@
 name: PR auto manifest
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-
-permissions:
-  contents: write
-  pull-requests: write
+  workflow_dispatch:
 
 jobs:
-  refresh-manifests:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+  disabled-note:
     runs-on: ubuntu-latest
-    container:
-      image: gentoo/stage3:latest
     steps:
-      - name: Install tooling
+      - name: Explain current limitation
         run: |
-          emerge --sync
-          emerge --quiet dev-vcs/git app-portage/pkgdev
-
-      - name: Checkout PR branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
-
-      - name: Configure git
-        run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Refresh manifests for changed package dirs
-        shell: bash
-        run: |
-          set -euo pipefail
-          base_ref="${{ github.event.pull_request.base.sha }}"
-
-          mapfile -t pkgdirs < <(
-            git diff --name-only "$base_ref" HEAD \
-              | awk -F/ 'NF >= 2 && $1 !~ /^\./ { print $1 "/" $2 }' \
-              | sort -u
-          )
-
-          if [ ${#pkgdirs[@]} -eq 0 ]; then
-            echo "No package directories changed."
-            exit 0
-          fi
-
-          for dir in "${pkgdirs[@]}"; do
-            if ls "$dir"/*.ebuild >/dev/null 2>&1; then
-              echo "Running pkgdev manifest in $dir"
-              (cd "$dir" && pkgdev manifest)
-            fi
-          done
-
-      - name: Commit manifest updates
-        shell: bash
-        run: |
-          set -euo pipefail
-          if git diff --quiet --exit-code -- '**/Manifest'; then
-            echo "No Manifest changes to commit."
-            exit 0
-          fi
-          git add .
-          git commit -m "ci: refresh manifests"
-          git push
+          echo "Automatic pkgdev manifest updates are currently disabled."
+          echo "Reason: the GitHub Actions environment used here does not provide a working pkgdev setup out of the box."
+          echo "For now, generate manifests locally on a Gentoo system with pkgdev manifest and push them to the PR branch."
