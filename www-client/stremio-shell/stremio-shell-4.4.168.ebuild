@@ -20,7 +20,7 @@ SRC_URI="
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
+S="${WORKDIR}/${PN}-${PV}"
 
 inherit qmake-utils xdg-utils
 
@@ -31,18 +31,19 @@ DEPEND="
 	dev-qt/qtdeclarative:5
 	dev-qt/qtgui:5
 	dev-qt/qtnetwork:5
-	dev-qt/qtwebchannel:5
-	dev-qt/qtwebengine:5
+	dev-qt/qtwebchannel:5=[widgets]
+	dev-qt/qtwebengine:5[widgets]
 	dev-qt/qtwidgets:5
 	media-video/mpv[libmpv]
 	net-libs/nodejs
 "
+KEYWORDS="~amd64"
+
 RDEPEND="${DEPEND}"
 BDEPEND="
 	net-misc/wget
 "
 
-S="${WORKDIR}/${PN}-${PV}"
 
 src_unpack() {
 	default
